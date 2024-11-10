@@ -1,26 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import PopupMenu from './components/PopupMenu'
+import './App.css'
 
 function App() {
+  const quizzes = [
+    "Academic & Professional", "Creative & Arts", "Cultural & Identity",
+    "Community Service & Social Impact", "Sports & Recreation", "Technology & Innovation",
+    "Social & Special Interests", "Political & Advocacy", "Health & Wellness",
+    "STEM - Specific", "Media & Communication", "Environmental & Sustainability"
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-          hi everyone ! - via
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          edtech connecting!
-        </a>
-      </header>
+    <>
+    <h1>Pick What You Are Interested In:</h1>
+    <div className="Quiz">
+      {quizzes.map((text, index) => (
+        <PopupMenu key={index} title={text} index={index} className="originalButton"/>
+      ))}
     </div>
+    <button className='submitButton'>Submit</button>
+    </>
   );
+
 }
 
 export default App;
