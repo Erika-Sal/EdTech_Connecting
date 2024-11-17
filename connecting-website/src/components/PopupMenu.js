@@ -39,15 +39,29 @@ function PopupMenu(props) {
     });
   };
 
+  function hexToRgba(hex, opacity) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+  }
+  
+
   return (
     <div>
-      <button onClick={togglePopup} className='originalButton'>{props.title}</button>
+<button 
+  onClick={togglePopup} 
+  className="originalButton" 
+  style={{ backgroundColor: hexToRgba(props.color, 0.7) }}
+>
+  {props.title}
+</button>
 
       {isOpen && (
         <div style={styles.overlay}>
           <div style={styles.popup}>
             <button onClick={togglePopup} style={styles.closeButton}>
-              Close
+              X
             </button>
             <div className="groupSubButtons">
               {/* Check if buttons[props.index] exists before mapping */}
@@ -60,7 +74,7 @@ function PopupMenu(props) {
                       className='subButton'
                       onClick={() => toggleButtonSelection(props.index, buttonIndex)}
                       style={{
-                        backgroundColor: isSelected ? '#4caf50' : '#f0f0f0',
+                        backgroundColor: isSelected ? '#015464' : '#6FBEBF',
                         color: isSelected ? '#fff' : '#000'
                       }}
                     >
@@ -106,7 +120,8 @@ const styles = {
     top: '10px',
     right: '10px',
     padding: '5px 10px',
-    fontSize: '14px',
+    fontSize: '17px',
+    fontWeight: 'bold',
     cursor: 'pointer',
   },
 };

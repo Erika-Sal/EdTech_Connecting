@@ -1,0 +1,61 @@
+@font-face {
+    font-family:mainFont;
+    src: url(../public/WorkSans-VariableFont_wght.ttf);
+  }
+  
+  
+  .Quiz{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px; 
+    padding: 40px; 
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top:-40px; 
+    
+  }
+  
+  body{
+    background-color: #F7F3EA;
+  }
+  
+  .originalButton{
+    font-weight:bold;
+    width:20vmin; 
+    height:20vmin; 
+    border-radius: 3vmin; 
+    border:none; 
+    font-family: mainFont;
+    margin:2.4vmin; 
+    padding:1vmin;
+    font-size:2.3vmin; 
+  }
+  
+  button{
+    font-family: mainFont;
+    border:none; 
+  }
+  
+  .subButton{
+    width:20vmin;
+    height:8vmin; 
+    border-radius: 3vmin; 
+    margin:1vmin; 
+  }
+  
+  .submitButton {
+    float:right;
+    margin-right:3vmin; 
+    border-radius:3vmin; 
+    font-size:2vmin; 
+    width:10vmin;
+    height:5vmin;
+    border:none; 
+    font-family:mainFont;  
+  }
+  
+  h1{
+    text-align: center;
+  }
+  
+  
