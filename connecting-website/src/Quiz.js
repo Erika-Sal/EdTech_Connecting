@@ -29,6 +29,14 @@ function Quiz() {
       subcategories,
     }));
 
+    function hexToRgba(hex, opacity) {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+}
+
+
     try {
       const response = await axios.post('http://127.0.0.1:5000/api/match', {
         answers: data,

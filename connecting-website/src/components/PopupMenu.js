@@ -36,12 +36,19 @@ function PopupMenu({ title, index, color, onSelectionChange }) {
     });
   };
 
+  function hexToRgba(hex, opacity) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+  }
+
   return (
     <div>
       <button
         onClick={togglePopup}
         className="originalButton"
-        style={{ backgroundColor: `rgba(${color}, 0.7)` }}
+        style={{ backgroundColor: hexToRgba(color, 0.7)  }}
       >
         {title}
       </button>
