@@ -60,7 +60,7 @@ function Quiz() {
             color={colors[index]}
             className="originalButton"
             onSelectionChange={(selectedSubcategories) =>
-              handleSelectionChange(index, selectedSubcategories)
+                handleSelectionChange(index, selectedSubcategories)
             }
           />
         ))}

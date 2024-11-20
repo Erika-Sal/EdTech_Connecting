@@ -30,8 +30,7 @@ function PopupMenu({ title, index, color, onSelectionChange }) {
       const selectedSubcategories = Object.keys(updatedSelections)
         .filter((key) => updatedSelections[key])
         .map((key) => buttons[index][key]);
-      onSelectionChange(selectedSubcategories);
-
+        onSelectionChange(index, selectedSubcategories);
       return updatedSelections;
     });
   };

@@ -114,29 +114,30 @@ def knn_match(user_answers, k=3):
 
 @app.route('/api/match', methods=['POST'])
 def match_user():
-    data = request.json.get("answers")  # List of general categories and subcategories
-    user_answers = []
+    try:
+        data = request.json.get("answers")
+        user_answers = []
 
-    for item in data:
-        general_category = feature_encoding["general_categories"].get(item["generalCategory"])
-        if not general_category:
-            return jsonify({"error": f"Unknown general category: {item['generalCategory']}"}), 400
-        
-        subcategories = [
-            subcategory_indices[item["generalCategory"]].get(sub)
-            for sub in item["subcategories"]
-            if sub in subcategory_indices[item["generalCategory"]]
-        ]
-        
-        # Combine general category and subcategories into one feature vector
-        user_answers.append([general_category, *subcategories])
+        for item in data:
+            general_category = feature_encoding["general_categories"].get(item["generalCategory"])
+            if not general_category:
+                return jsonify({"error": f"Unknown general category: {item['generalCategory']}"}), 400
+            
+            subcategories = [
+                subcategory_indices[item["generalCategory"]].get(sub)
+                for sub in item["subcategories"]
+                if sub in subcategory_indices[item["generalCategory"]]
+            ]
+            if not all(subcategories):
+                return jsonify({"error": f"Invalid subcategories for {item['generalCategory']}"}), 400
 
-    # Flatten user_answers to one feature vector
-    flattened_answers = [value for sublist in user_answers for value in sublist]
+            user_answers.append([general_category, *subcategories])
 
-    # Match user using KNN
-    match = knn_match(flattened_answers)
-    return jsonify({"match": match})
+        flattened_answers = [value for sublist in user_answers for value in sublist]
+        match = knn_match(flattened_answers)
+        return jsonify({"match": match})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
